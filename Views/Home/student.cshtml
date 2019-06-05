@@ -1,0 +1,18 @@
+﻿@model Students.Models.StudentsAndGroups
+<div class="mainBody">
+    <h2>Name: @Model.student.name</h2>
+    <p>Level: @Model.student.level</p>
+    <p>Description: @Model.student.description</p>
+    @if(@Model.group == null) 
+    {
+    <p><a>Unassigned</a></p> 
+    }
+    else
+    {
+    <p><a href="/group/@Model.group.groupId">@Model.group.name</a></p> 
+    }
+    <form action="/" method="GET">
+        <input value="Students" class="addButton" type="submit">
+    </form>
+</div>
+

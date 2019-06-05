@@ -1,0 +1,55 @@
+﻿@model Students.Models.StudentsAndGroups
+<div class="mainBody" style="width: 60%;">
+    <div class="list">
+        <h2>All Group</h2>
+        <table class="tableStyle">
+            <thead style="background: grey;">
+                <th class="tableFields">Group Name</th>
+            </thead>
+            <tbody>
+                @foreach(var group in @Model.groups){
+                <tr class="tableFields">
+                    <td><a asp-controller="Home" asp-action="Group" asp-route-id="@group.groupId">@group.name</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <form action="/" method="GET">
+            <input value="Students" class="addButton" type="submit">
+        </form>
+    </div>
+    <div class="middle"></div>
+    <div class="form">
+        <h2>Register a Group</h4>
+        <form asp-action="GroupCreate" asp-controller="Home" method="post">
+            <p> 
+                <label asp-for="group.name"></label>
+                <span asp-validation-for="group.name" style="color: red;"></span><br>
+                @if(@ViewBag.ErrorMessage != null) 
+                {
+                <p style="color: red;">@ViewBag.ErrorMessage</p> 
+                }
+                <input asp-for="group.name">       
+            <br><br>
+            </p>
+            <p> 
+                <span asp-validation-for="group.location" style="color: red;"></span>
+                <label asp-for="group.location"></label><br>
+                <select asp-for="group.location">
+                    <option>Glendale</option>
+                    <option>Burbank</option>
+                    <option>San Francisco</option>
+                </select>       
+            <br><br>
+            </p>
+            <p>  
+                <label asp-for="group.description"></label>
+                <span asp-validation-for="group.description" style="color: red;"></span><br>
+                <textarea asp-for="group.description" cols="22"></textarea>           
+            <br>
+            </p>
+            <input value="Add" class="addButton" type="submit">
+        </form>
+    </div>
+</div>
+

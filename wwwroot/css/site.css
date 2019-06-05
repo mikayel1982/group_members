@@ -1,0 +1,119 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+  width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+  margin: 15px;
+}
+
+.mainBody {
+  padding: 3%;
+  margin: auto;
+  width: 80%;
+  border: 2px solid black;
+  /* height: 900px; */
+  overflow: auto;
+}
+
+.tableFields,
+.tableFields td {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.tableStyle {
+  border: 3px solid black;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+
+tr:nth-child(even) {
+  background-color: #bab8b8;
+}
+
+.addButton {
+  float: right;
+  color: black;
+  background: white;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 2px 2px;
+  width: 80px;
+}
+
+.list {
+  display: inline-block;
+  float: left;
+  padding: 15px;
+}
+
+.middle {
+  display: inline-block;
+  border-right: 2px solid black;
+  padding: 40px;
+  height: 400px;
+}
+
+.form {
+  display: inline-block;
+  background: #bab8b8;
+  float: right;
+  padding: 0 15px 15px 15px;
+}
+
+@media screen and (max-width: 1200px) {
+  .mainBody {
+    padding: 3%;
+    margin: auto;
+    width: 80%;
+    border: none;
+  }
+
+  .list {
+    display: block;
+    float: none;
+    padding: 15px;
+  }
+
+  .middle {
+    display: none;
+  }
+
+  .form {
+    display: block;
+    background: #bab8b8;
+    float: none;
+    padding: 15px;
+  }
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+  /* Hide captions */
+  .carousel-caption {
+    display: none;
+  }
+}

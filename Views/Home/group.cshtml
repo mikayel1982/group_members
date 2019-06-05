@@ -1,0 +1,49 @@
+﻿@model Students.Models.StudentsAndGroups
+<div class="mainBody" style="width: 45%; text-align: center;">
+        <h2>Name: @Model.group.name</h2>
+        <p>Location: @Model.group.location</p>
+        <p>Description: @Model.group.description</p>
+    <div class="list">
+        <h4>Assigned Students</h4>
+        <table class="tableStyle">
+            <thead style="background: grey;">
+                <th class="tableFields">Students</th>
+                <th class="tableFields">Action</th>
+            </thead>
+            <tbody>
+                @foreach(var student in @Model.students){
+                <tr class="tableFields">
+                    @if(@student.groups_groupId == @Model.group.groupId) 
+                    {
+                    <td><a href="/student/@student.studentId">@student.name</a></td>
+                    <td><a href="/drop/@student.studentId/@Model.group.groupId">Drop</a></td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="list" >
+        <h4>Unassigned Students</h4>
+         <table class="tableStyle">
+            <thead style="background: grey;">
+                <th class="tableFields">Student</th>
+                <th class="tableFields">Action</th>
+            </thead>
+            <tbody>
+                @foreach(var student in @Model.students){
+                <tr class="tableFields">
+                    @if(@student.groups_groupId != @Model.group.groupId) 
+                    {
+                    <td><a href="/student/@student.studentId">@student.name</a></td>
+                    <td><a href="/enroll/@student.studentId/@Model.group.groupId">Enroll</a></td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+        <form action="/groups" method="GET">
+            <input value="Groups" class="addButton" type="submit">
+        </form>        
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model Students.Models.StudentsAndGroups
+<div class="mainBody">
+    <div class="list">
+        <h2>The list of all student</h2>
+        <table class="tableStyle">
+            <thead style="background: grey;">
+                <th class="tableFields">Student Name</th>
+                <th class="tableFields">Group Name</th>
+            </thead>
+            <tbody>
+                @foreach(var student in @Model.students){
+                <tr class="tableFields">
+                    <td><a href="student/@student.studentId">@student.name</a></td>
+                    @if(@student.group == null) 
+                    {
+                        <td><a>Unassigned</a></td> 
+                    }
+                    else
+                    {
+                        <td><a href="group/@student.group.groupId">@student.group.name</a></td> 
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+        <form action="/groups" method="GET">
+            <input value="Groups" class="addButton" type="submit">
+        </form>
+    </div>
+    <div class="middle"></div>
+    <div class="form">
+        <h2>Register a new student</h4>
+        <form asp-action="StudentCreate" asp-controller="Home" method="post">
+            <p> 
+                <label asp-for="student.name"></label>
+                <span asp-validation-for="student.name" style="color: red;"></span><br>
+                @if(@ViewBag.ErrorMessage != null) 
+                {
+                <p style="color: red;">@ViewBag.ErrorMessage</p> 
+                }
+                <input asp-for="student.name">       
+            <br><br>
+            </p>
+            <p> 
+                <span asp-validation-for="student.level" style="color: red;"></span>
+                <label asp-for="student.level"></label><br>
+                <select asp-for="student.level">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>       
+            <br><br>
+            </p>
+            <p> 
+                <span asp-validation-for="student.groups_groupId" style="color: red;"></span>
+                <label asp-for="student.groups_groupId"></label><br>
+                <select asp-for="student.groups_groupId">
+                    <option value='0'>Unassigned</option>
+                    @foreach(var group in @Model.groups){
+                    <option value='@group.groupId'>@group.name</option>
+                    }
+                </select>       
+            <br><br>
+            </p>
+            <p>  
+                <label asp-for="student.description"></label>
+                <span asp-validation-for="student.description" style="color: red;"></span><br>
+                <textarea asp-for="student.description" cols="22"></textarea>           
+            <br>
+            </p>
+            <input value="Add" class="addButton" type="submit">
+        </form>
+    </div>
+</div>
+
